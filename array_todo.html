@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: rgb(193, 185, 185);
+        }
+    </style>
+    <div style="text-align: center;">
+        <input type="text" id="etText" placeholder="Enter the text"
+            style="margin: 30px; padding: 10px; border-radius: 20px;">
+        <button id="btnAdd" onclick="addValue()"
+            style="padding: 10px; background-color: rgb(244, 224, 199);  border-radius: 20px;">
+            ADD
+        </button>
+    </div>
+    <div style="text-align: center; margin: 30px; padding: 10px; border-radius: 20px;" id="divID;" >
+
+        <ul id="listID">
+
+        </ul>
+
+    </div>
+    <script>
+        let arrayEle = [];
+        function generateEle() {
+            var taskList = document.getElementById('listID');
+            taskList.innerHTML = ""; // Clear the list before rendering
+
+            arrayEle.forEach((task, index) => {
+                var taskItem = document.createElement('li');
+                taskItem.textContent = `${index + 1}. ${task}`;
+                taskList.appendChild(taskItem);
+            });
+        }
+
+        document.getElementById('btnAdd').addEventListener('click', function () {
+            var taskInput = document.getElementById('etText');
+            var taskText = taskInput.value.trim();
+
+            if (taskText !== "") {
+                arrayEle.push(taskText);
+                generateEle(); 
+                taskInput.value = ""; 
+            } else {
+                alert("Please enter a task.");
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>
